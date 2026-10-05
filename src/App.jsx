@@ -21,6 +21,10 @@ function App() {
     setTodos(todos.map(t => t.id === id ? { ...t, done: !t.done } : t));
   }
 
+  function removeTodo(id) {
+    setTodos(todos.filter(t => t.id !== id));
+  }
+
   return (
     <main>
       <h1>ToDo</h1>
@@ -37,6 +41,9 @@ function App() {
               {t.done ? "Avmarkera" : "Markera klar"}
             </button>
             {t.text}
+            <button type="button" onClick={() => removeTodo(t.id)}>
+              Ta bort
+            </button>
           </li>
         ))}
       </ul>
