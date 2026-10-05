@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([{ id: 1, text: "Exam 2", done: false }]);
@@ -26,23 +27,25 @@ function App() {
   }
 
   return (
-    <main>
+    <main className="app">
       <h1>ToDo</h1>
 
-      <form onSubmit={addTodo}>
-        <input value={draft} onChange={e => setDraft(e.target.value)} placeholder="Ny uppgift..." />
+      <form className="input-row" onSubmit={addTodo}>
+        <input
+          value={draft}
+          onChange={e => setDraft(e.target.value)}
+          placeholder="Ny uppgift..."
+        />
         <button type="submit">Lägg till</button>
       </form>
 
-      <ul>
+      <ul className="todo-list">
         {todos.map(t => (
-          <li key={t.id}>
-            <button type="button" onClick={() => toggleDone(t.id)}>
-              {t.done ? "Avmarkera" : "Markera klar"}
-            </button>
-            {t.text}
-            <button type="button" onClick={() => removeTodo(t.id)}>
-              Ta bort
+          <li className={t.done ? "todo completed" : "todo"} key={t.id}>
+            <input type="checkbox" checked={t.done} onChange={() => toggleDone(t.id)} />
+            <p className="todo-text">{t.text}</p>
+            <button className="todo-remove" type="button" onClick={() => removeTodo(t.id)}>
+              X
             </button>
           </li>
         ))}

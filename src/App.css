@@ -1,0 +1,58 @@
+body {
+    font-family: system-ui, sans-serif;
+    background-color: beige;
+}
+
+.app {
+    max-width: 28rem;
+    margin: 2rem auto;
+}
+
+.input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.input-row input {
+    flex: 1 1 10rem;
+    padding: 0.5rem 0.65rem;
+    min-width: 0;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: thin solid burlywood;
+}
+
+.completed {
+    opacity: 0.6;
+    background-color: greenyellow;
+}
+
+.completed .todo-text {
+    text-decoration: line-through;
+}
+
+.todo-text {
+    flex: 1;
+    margin: 0;
+}
+
+.todo-remove {
+    border: none;
+    background-color: transparent;
+    color: red;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
