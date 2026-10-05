@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function App() {
-  const [todos, setTodos] = useState([{ id: 1, text: "Exam 2" }]);
+  const [todos, setTodos] = useState([{ id: 1, text: "Exam 2", done: false }]);
   const [draft, setDraft] = useState("");
 
   function addTodo(e) {
@@ -12,9 +12,13 @@ function App() {
 
     setTodos([
       ...todos,
-      { id: Date.now(), text: trimmed },
+      { id: Date.now(), text: trimmed, done: false },
     ]);
     setDraft("");
+  }
+
+  function toggleDone(id) {
+    setTodos(todos.map(t => t.id === id ? { ...t, done: !t.done } : t));
   }
 
   return (
@@ -29,6 +33,9 @@ function App() {
       <ul>
         {todos.map(t => (
           <li key={t.id}>
+            <button type="button" onClick={() => toggleDone(t.id)}>
+              {t.done ? "Avmarkera" : "Markera klar"}
+            </button>
             {t.text}
           </li>
         ))}
