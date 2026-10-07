@@ -1,53 +1,43 @@
 import { useState } from "react";
 import "./App.css";
+import TodoItem from "./components/TodoItem";
+import TodoForm from "./components/TodoForm";
 
 function App() {
-  const [todos, setTodos] = useState([{ id: 1, text: "Exam 2", done: false }]);
-  const [draft, setDraft] = useState("");
+  const [todos, setTodos] = useState([]);
 
-  function addTodo(e) {
-    e.preventDefault();
-
-    const trimmed = draft.trim();
+  function addTodo(text) {
+    const trimmed = text.trim();
     if (!trimmed) return;
 
     setTodos([
       ...todos,
       { id: Date.now(), text: trimmed, done: false },
     ]);
-    setDraft("");
   }
 
   function toggleDone(id) {
-    setTodos(todos.map(t => t.id === id ? { ...t, done: !t.done } : t));
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo));
   }
 
   function removeTodo(id) {
-    setTodos(todos.filter(t => t.id !== id));
+    setTodos(todos.filter(todo => todo.id !== id));
   }
 
   return (
     <main className="app">
       <h1>ToDo</h1>
 
-      <form className="input-row" onSubmit={addTodo}>
-        <input
-          value={draft}
-          onChange={e => setDraft(e.target.value)}
-          placeholder="Ny uppgift..."
-        />
-        <button type="submit">Lägg till</button>
-      </form>
+      <TodoForm onAdd={addTodo} />
 
       <ul className="todo-list">
-        {todos.map(t => (
-          <li className={t.done ? "todo completed" : "todo"} key={t.id}>
-            <input type="checkbox" checked={t.done} onChange={() => toggleDone(t.id)} />
-            <p className="todo-text">{t.text}</p>
-            <button className="todo-remove" type="button" onClick={() => removeTodo(t.id)}>
-              X
-            </button>
-          </li>
+        {todos.map(todo => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggle={() => toggleDone(todo.id)}
+            onRemove={() => removeTodo(todo.id)}
+          />
         ))}
       </ul>
     </main>
