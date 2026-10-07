@@ -5,6 +5,7 @@ import TodoForm from "./components/TodoForm";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [filter, setFilter] = useState("all"); // all, done, undone.
 
   function addTodo(text) {
     const trimmed = text.trim();
@@ -14,6 +15,22 @@ function App() {
       ...todos,
       { id: Date.now(), text: trimmed, done: false },
     ]);
+  }
+
+  function filterTodos() {
+    const filtered = todos.filter(todo => {
+      if (filter === "all") {
+        return true;
+      } else if (filter === "done") {
+        return todo.done;
+      } else if (filter === "undone") {
+        return !todo.done;
+      } else {
+        return true;
+      }
+    });
+
+    return filtered;
   }
 
   function toggleDone(id) {
@@ -30,8 +47,41 @@ function App() {
 
       <TodoForm onAdd={addTodo} />
 
+      <fieldset className="todo-filter">
+        <legend className="filter-legend">Visa uppgifter</legend>
+        <div className="filter-options">
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              onChange={() => setFilter("all")}
+              checked={filter === "all"}
+            />
+            Alla
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              onChange={() => setFilter("done")}
+              checked={filter === "done"}
+            />
+            Klara
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="filter"
+              onChange={() => setFilter("undone")}
+              checked={filter === "undone"}
+            />
+            Inte klara
+          </label>
+        </div>
+      </fieldset>
+
       <ul className="todo-list">
-        {todos.map(todo => (
+        {filterTodos().map(todo => (
           <TodoItem
             key={todo.id}
             todo={todo}
