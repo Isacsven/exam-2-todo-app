@@ -9,19 +9,25 @@ function App() {
 
   function addTodo(text) {
     const trimmed = text.trim();
-    if (!trimmed) return;
+    if (!trimmed) {
+      return false;
+    }
 
     setTodos([
       ...todos,
       { id: Date.now(), text: trimmed, done: false },
     ]);
+
+    return true;
   }
 
   function filterTodos() {
+    if (filter === "all") {
+      return todos;
+    }
+
     const filtered = todos.filter(todo => {
-      if (filter === "all") {
-        return true;
-      } else if (filter === "done") {
+      if (filter === "done") {
         return todo.done;
       } else if (filter === "undone") {
         return !todo.done;

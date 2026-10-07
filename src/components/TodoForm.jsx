@@ -6,8 +6,12 @@ function TodoForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onAdd(draft);
-    setDraft("");
+
+    const added = onAdd(draft);
+    // Nollställ endast om en uppgift lades till.
+    if (added) {
+      setDraft("");
+    }
   }
 
   return (
