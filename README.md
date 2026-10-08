@@ -1,3 +1,7 @@
+# Redovisning
+
+[Redovisningen](https://funet-my.sharepoint.com/:v:/g/personal/3ggyhmu26_svenis_folkuniversitetet_nu/IQBHOropvZ2BTKIzJGMrQReVAdZ8MyDbxKYBYoPH8QJI8AU?e=BVtWuN&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D).
+
 # Frågor om koden
 
 ## State-hantering: Hur håller din app reda på vilka uppgifter som finns och om de är klara? Vad händer med gränssnittet när datan uppdateras?
