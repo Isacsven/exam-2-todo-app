@@ -61,7 +61,7 @@ function App() {
             { filter: "done", label: "Klara" },
             { filter: "undone", label: "Inte klara" },
           ].map(option => (
-            <label>
+            <label key={option.filter}>
               <input
                 type="radio"
                 name="filter"
