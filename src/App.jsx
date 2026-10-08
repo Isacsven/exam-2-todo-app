@@ -56,33 +56,21 @@ function App() {
       <fieldset className="todo-filter">
         <legend className="filter-legend">Visa uppgifter</legend>
         <div className="filter-options">
-          <label>
-            <input
-              type="radio"
-              name="filter"
-              onChange={() => setFilter("all")}
-              checked={filter === "all"}
-            />
-            Alla
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="filter"
-              onChange={() => setFilter("done")}
-              checked={filter === "done"}
-            />
-            Klara
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="filter"
-              onChange={() => setFilter("undone")}
-              checked={filter === "undone"}
-            />
-            Inte klara
-          </label>
+          {[
+            { filter: "all", label: "Alla" },
+            { filter: "done", label: "Klara" },
+            { filter: "undone", label: "Inte klara" },
+          ].map(option => (
+            <label>
+              <input
+                type="radio"
+                name="filter"
+                onChange={() => setFilter(option.filter)}
+                checked={filter === option.filter}
+              />
+              {option.label}
+            </label>
+          ))}
         </div>
       </fieldset>
 
