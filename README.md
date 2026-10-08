@@ -6,11 +6,14 @@
 
 ## State-hantering: Hur håller din app reda på vilka uppgifter som finns och om de är klara? Vad händer med gränssnittet när datan uppdateras?
 
-`todos` state håller alla todo uppgifter i form av en array av objekt. Det är `done` egenskapen på varje todo-objekt som håller reda på om en uppgift är klar eller inte. När datan uppdateras med en set-funktion triggar det en React re-render, vilket kör komponent koden igen och uppdaterar gränssnittet med den nya datan.
+`todos` state håller alla todo uppgifter i form av en array av objekt. 
+Det är `done` egenskapen på varje todo-objekt som håller reda på om en uppgift är klar eller inte.
+När state uppdateras med en set-funktion triggar det en React re-render, vilket kör komponent koden igen och uppdaterar gränssnittet med den nya datan, alltså sidan ritas om.
 
 ## Oföränderlighet (Immutability): Varför får man inte ändra en befintlig array direkt med t.ex. .push() i React? Hur gör du istället när du lägger till eller tar bort en uppgift?
 
-När man använder `.push()` på den nuvarande array listan läggs värdet till, men det säger inte till React att datan har uppdaterats (ingen re-render). Även om man anropar set-funktionen fast med samma muterade array kan React missa uppdateringen eftersom det fortfarande är samma array referens. Istället behöver man skapa en ny array, vilket man kan göra genom att spread:a nuvarande todos samt lägga till en ny uppgift i en ny array när man ska lägga till en uppgift, eller använda `.filter()` för att endast spara de todo-objekt som klarar villkoret i en ny array när man tar bort en uppgift.
+När man använder `.push()` på den nuvarande array listan läggs värdet till, men det säger inte till React att datan har uppdaterats (ingen re-render). Även om man anropar set-funktionen fast med samma muterade array kan React missa uppdateringen eftersom det fortfarande är samma array referens.
+Istället behöver man skapa en ny array och använda det som argument till set-funktionen för att uppdatera state. Vilket när man lägger till en uppgift kan göra genom att spread:a nuvarande todos samt lägga till en ny uppgift i en ny array. Eller när man ska ta bort en uppgift använda `.filter()` för att endast spara de todo-objekt som klarar villkoret i en ny array.
 
 # Kodgranskning
 
